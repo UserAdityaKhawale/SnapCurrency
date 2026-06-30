@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Currency Converter</title>
+
     <link rel="stylesheet" href="style.css" />
+
     <!-- Boxicons -->
     <link
       href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
@@ -13,11 +15,67 @@
   </head>
 
   <body>
+    <!-- Background Blur Circles -->
     <div class="circle circle--purple"></div>
     <div class="circle circle--blue"></div>
-    <div class="curency converter">
-      <!--Title Of Project---->
-      <h1 class="SnapCurrency-converter_title">SnapCurrency Converter
+
+    <!-- Currency Converter Card -->
+    <div class="currencyConverter">
+      <h1 class="SnapCurrency-converter_title">SnapCurrency</h1>
+
+      <!-- Amount Input -->
+      <input
+        class="currency-converter__input"
+        type="number"
+        id="inputSourceCurrency"
+        placeholder="Enter Amount"
+      />
+
+      <!-- Currency Selection -->
+      <div class="currency-converter__select-group">
+        <!-- Source Currency -->
+        <section class="currency-converter__select">
+          <img
+            id="imageSourceCurrency"
+            src="https://flagcdn.com/48x36/us.png"
+            alt="United States Flag"
+          />
+
+          <select id="selectSourceCurrency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </section>
+
+        <!-- Swap Button -->
+        <button class="currency-converter__swap-button" type="button">
+          <i class="bx bx-swap-horizontal"></i>
+        </button>
+
+        <!-- Target Currency -->
+        <section class="currency-converter__select">
+          <img
+            id="imageTargetCurrency"
+            src="https://flagcdn.com/48x36/id.png"
+            alt="Indonesia Flag"
+          />
+
+          <select id="selectTargetCurrency">
+            <option value="IDR">IDR</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </section>
+      </div>
+
+      <!-- Exchange Rate -->
+      <div class="currency-converter__exchange-rate">
+        <span
+          id="exchangeRateText"
+          class="currency-converter__exchange-rate-text"
+        >
+          1 USD = 16,500 IDR
+        </span>
+      </div>
     </div>
 
     <script src="script.js" type="module"></script>
