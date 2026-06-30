@@ -32,3 +32,23 @@ body {
   width: 100%;
   height: 100dvh;
 }
+.circle {
+  border: solid;
+  width: 350px;
+  height: 350px;
+  border-radius: 100%;
+  filter: blur(150px);
+  position: absolute;
+}
+.circle--purple {
+  background: var(--purple-transparent);
+  right: 50%;
+  bottom: 50%;
+}
+.circle--blue {
+  background: var(--blue-transparent);
+  left: 50%;
+  top: 50%;
+}
+.SnapCurrency-converter_title {
+}
