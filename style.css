@@ -1,221 +1,568 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* ==========================================
+   RESET
+========================================== */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family:
+    Inter,
+    Segoe UI,
+    Arial,
+    sans-serif;
 }
 
-:root {
-  --primary-color: #ffca26;
-  --primary-transparent: #ffca261a;
-
-  --blue-transparent: #00a2ff50;
-  --purple-transparent: #6a00ff50;
-
-  --dark-gray: #222a35;
-  --dark-gray-light: #293040;
-}
-
-* {
-  color: #fff;
-}
-
-::selection {
-  background: var(--primary-color);
-  color: var(--dark-gray);
-}
-
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  background: #10131c;
+  overflow-x: hidden;
   position: relative;
-  background: linear-gradient(145deg, var(--dark-gray), var(--dark-gray-light));
+  color: #fff;
+  transition: 0.3s ease;
 }
 
-/* ================= Background Circles ================= */
+/* ==========================================
+   VARIABLES
+========================================== */
+
+:root {
+  --primary-color: #ffca26;
+  --primary-hover: #ffb700;
+
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --glass: rgba(255, 255, 255, 0.12);
+
+  --border: rgba(255, 255, 255, 0.15);
+
+  --text: #ffffff;
+  --text-light: #cfcfcf;
+
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================
+   BACKGROUND
+========================================== */
 
 .circle {
   position: absolute;
-  width: 350px;
-  height: 350px;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(70px);
+  z-index: -1;
 }
 
 .circle--purple {
-  background: var(--purple-transparent);
-  right: 50%;
-  bottom: 50%;
+  width: 350px;
+  height: 350px;
+  background: #7c3aed;
+  top: -100px;
+  left: -120px;
 }
 
 .circle--blue {
-  background: var(--blue-transparent);
-  left: 50%;
-  top: 50%;
+  width: 350px;
+  height: 350px;
+  background: #2563eb;
+  right: -120px;
+  bottom: -120px;
 }
 
-/* ================= Converter Card ================= */
+/* ==========================================
+   MAIN CARD
+========================================== */
 
 .currencyConverter {
-  width: 420px;
-  max-width: 90%;
-  padding: 32px;
-  border-radius: 16px;
-  z-index: 1;
-
-  background: linear-gradient(
-    210deg,
-    rgba(255, 255, 255, 0.1),
-    var(--primary-transparent)
-  );
-
-  border: 2px solid rgba(255, 255, 255, 0.08);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  width: 480px;
+  max-width: 95%;
+  background: var(--card-bg);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  padding: 35px;
+  box-shadow: var(--shadow);
 }
+
+/* ==========================================
+   TITLE
+========================================== */
 
 .SnapCurrency-converter_title {
   text-align: center;
-  margin-bottom: 32px;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: 700;
 }
 
-/* ================= Input ================= */
+/* ==========================================
+   THEME TOGGLE
+========================================== */
 
-.currency-converter__input {
-  width: 100%;
-  padding: 10px 16px;
-  margin-bottom: 32px;
-
-  background: rgba(0, 0, 0, 0.2);
-
-  border: none;
-  border-radius: 10px;
-
-  outline: 2px solid transparent;
-
-  text-align: center;
-  font-size: 18px;
-
-  transition: 0.2s ease;
-}
-
-.currency-converter__input:focus {
-  outline-color: var(--primary-color);
-}
-
-/* ================= Currency Select ================= */
-
-.currency-converter__select-group {
+.theme-toggle {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
-.currency-converter__select {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.currency-converter__select img {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
+.theme-toggle button {
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: #222;
+  font-size: 18px;
+  transition: 0.3s;
 }
 
-.currency-converter__select select {
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+.theme-toggle button:hover {
+  transform: rotate(180deg);
+}
 
-  font-size: 18px;
+/* ==========================================
+   ERROR MESSAGE
+========================================== */
+
+#errorMessage {
+  display: none;
+  background: #ff4d4d;
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ==========================================
+   AMOUNT
+========================================== */
+
+.amount-box {
+  margin-bottom: 25px;
+}
+
+.amount-box label {
+  display: block;
+  margin-bottom: 10px;
   font-weight: 600;
 }
 
-.currency-converter__select option {
-  background: var(--dark-gray);
+.currency-converter__input {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 18px;
+  background: var(--glass);
   color: white;
-  font-size: 16px;
 }
 
-/* ================= Swap Button ================= */
+/* ==========================================
+   SELECT GROUP
+========================================== */
+
+.currency-converter__select-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+}
+/* ==========================================
+   CURRENCY SELECT CARD
+========================================== */
+
+.currency-converter__select {
+  flex: 1;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.currency-converter__select img {
+  width: 48px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.currency-inputs {
+  width: 100%;
+}
+
+/* ==========================================
+   SEARCH INPUT
+========================================== */
+
+.currency-search {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 14px;
+}
+
+.currency-search::placeholder {
+  color: #cfcfcf;
+}
+
+/* ==========================================
+   SELECT DROPDOWN
+========================================== */
+
+.currency-converter__select select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.currency-converter__select option {
+  background: #222;
+  color: white;
+}
+
+/* ==========================================
+   FAVORITE BUTTON
+========================================== */
+
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+  color: gold;
+
+  cursor: pointer;
+  font-size: 18px;
+
+  transition: 0.25s;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.2);
+}
+
+/* ==========================================
+   SWAP BUTTON
+========================================== */
 
 .currency-converter__swap-button {
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
 
   border: none;
   border-radius: 50%;
 
   background: var(--primary-color);
-  color: var(--dark-gray);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #222;
 
   cursor: pointer;
 
-  transition: 0.2s ease;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.currency-converter__swap-button i {
   font-size: 24px;
-  color: var(--dark-gray);
+
+  transition: 0.3s;
 }
 
 .currency-converter__swap-button:hover {
-  transform: rotate(180deg);
+  transform: rotate(180deg) scale(1.08);
+  background: var(--primary-hover);
 }
 
-.currency-converter__swap-button:active {
-  transform: scale(0.92);
-}
-
-/* ================= Exchange Rate ================= */
+/* ==========================================
+   EXCHANGE RATE
+========================================== */
 
 .currency-converter__exchange-rate {
-  margin-top: 30px;
-  padding: 12px;
-
   text-align: center;
-
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.08);
-
-  transition: 0.25s ease;
-}
-
-.currency-converter__exchange-rate:hover {
-  background: rgba(0, 0, 0, 0.2);
+  margin: 25px 0 18px;
 }
 
 .currency-converter__exchange-rate-text {
+  font-size: 15px;
+  color: var(--text-light);
   font-weight: 500;
 }
 
-/* ================= Responsive ================= */
+/* ==========================================
+   CONVERT BUTTON
+========================================== */
 
-@media (max-width: 480px) {
+.currency-converter__convert-button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: var(--primary-color);
+  color: #222;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.currency-converter__convert-button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(255, 202, 38, 0.35);
+}
+
+.currency-converter__convert-button:active {
+  transform: scale(0.98);
+}
+/* ==========================================
+   RESULT CARD
+========================================== */
+
+.result-card {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.result-card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  word-break: break-word;
+}
+
+/* ==========================================
+   COPY BUTTON
+========================================== */
+
+.copy-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary-color);
+  color: #222;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.copy-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.copy-btn:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================
+   LAST UPDATED
+========================================== */
+
+#lastUpdated {
+  margin-top: 15px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+/* ==========================================
+   LOADER
+========================================== */
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.spinner {
+  width: 45px;
+  height: 45px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-top: 5px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   HISTORY
+========================================== */
+
+.history {
+  margin-top: 30px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+}
+
+.history h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.history ul {
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.history li {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.history li:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+.history ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history ul::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 20px;
+}
+
+.history ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ==========================================
+   LIGHT MODE
+========================================== */
+
+body.light {
+  background: #eef2f7;
+  color: #222;
+}
+
+body.light .currencyConverter {
+  background: white;
+  color: #222;
+}
+
+body.light .currency-converter__input,
+body.light .currency-search,
+body.light .currency-converter__select,
+body.light .result-card,
+body.light .history {
+  background: #f5f7fb;
+  color: #222;
+}
+
+body.light select,
+body.light option {
+  color: #222;
+  background: white;
+}
+
+body.light .history li {
+  background: white;
+}
+
+body.light #lastUpdated,
+body.light .currency-converter__exchange-rate-text {
+  color: #555;
+}
+
+/* ==========================================
+   FUTURE FEATURES
+========================================== */
+
+#chartContainer {
+  margin-top: 30px;
+}
+
+#alertContainer {
+  margin-top: 15px;
+}
+
+#installApp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background: var(--primary-color);
+  color: #222;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
   .currencyConverter {
-    padding: 24px;
+    width: 95%;
+    padding: 25px;
   }
 
   .currency-converter__select-group {
@@ -227,6 +574,29 @@ body {
   }
 
   .currency-converter__swap-button:hover {
-    transform: rotate(270deg);
+    transform: rotate(270deg) scale(1.05);
+  }
+
+  .result-card h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .SnapCurrency-converter_title {
+    font-size: 1.6rem;
+  }
+
+  .currency-converter__input {
+    font-size: 16px;
+  }
+
+  .copy-btn,
+  .currency-converter__convert-button {
+    width: 100%;
+  }
+
+  .theme-toggle {
+    justify-content: center;
   }
 }

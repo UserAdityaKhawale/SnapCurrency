@@ -1,28 +1,28 @@
-# 💱 SnapCurrency
+# SnapCurrency
 
-A simple and responsive Currency Converter built with **HTML**, **CSS**, and **JavaScript**. It uses a live exchange rate API to convert currencies instantly.
+A responsive currency converter built with HTML, CSS, and JavaScript. It uses live exchange rates when available and falls back to basic offline rates for common currencies if the network request fails.
 
 ## Features
 
-- Real-time currency conversion
-- Country flags
+- Live currency conversion
+- Offline fallback for common currencies
+- Currency search
 - Swap currencies
+- Favorites
+- Conversion history
+- Theme toggle
 - Input validation
-- Responsive design
 
-## Technologies Used
+## Run Locally
 
-- HTML5
-- CSS3
-- JavaScript (ES6)
-- ExchangeRate API
-- Flag CDN
+Because the app uses JavaScript modules, serve the folder from a local web server:
 
-## Installation
+```bash
+python -m http.server 5179
+```
 
-1. Clone the repository.
-2. Open `index.html` in your browser.
+Then open:
 
-## License
-
-This project is open source and available under the MIT License.
+```text
+http://127.0.0.1:5179/index.html
+```
