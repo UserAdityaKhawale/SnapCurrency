@@ -13,16 +13,11 @@ A responsive currency converter built with HTML, CSS, and JavaScript. It uses li
 - Theme toggle
 - Input validation
 
-## Run Locally
+## 📦 Installation
 
-Because the app uses JavaScript modules, serve the folder from a local web server:
+1. Clone the repository.
+2. Open `index.html` in your browser.
 
-```bash
-python -m http.server 5179
-```
+## 📄 License
 
-Then open:
-
-```text
-http://127.0.0.1:5179/index.html
-```
+This project is open source and available under the MIT License.
