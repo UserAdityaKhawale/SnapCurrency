@@ -1,4 +1,4 @@
-# SnapCurrency
+# SnapCurrency : https://useradityakhawale.github.io/SnapCurrency/
 
 A responsive currency converter built with HTML, CSS, and JavaScript. It uses live exchange rates when available and falls back to basic offline rates for common currencies if the network request fails.
 
