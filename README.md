@@ -18,6 +18,12 @@ A responsive currency converter built with HTML, CSS, and JavaScript. It uses li
 1. Clone the repository.
 2. Open `index.html` in your browser.
 
+Screeen shots Of UI :
+<img width="1889" height="860" alt="image" src="https://github.com/user-attachments/assets/079cbfcf-f9ff-4d8a-9480-92044d96b6fc" /> 
+<img width="1889" height="863" alt="image" src="https://github.com/user-attachments/assets/e592a6b1-32a0-45cb-9f42-002752bd9ba4" />
+
+
+
 ## 📄 License
 
 This project is open source and available under the MIT License.
