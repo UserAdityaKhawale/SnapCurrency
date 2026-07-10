@@ -95,6 +95,62 @@ function populateCurrencies() {
 
   sourceSelect.replaceChildren(fragmentSource);
   targetSelect.replaceChildren(fragmentTarget);
+  
+  setupCustomDropdown("Source");
+  setupCustomDropdown("Target");
+}
+
+function setupCustomDropdown(type) {
+  const select = document.getElementById(`select${type}Currency`);
+  const trigger = document.getElementById(`trigger${type}`);
+  const display = document.getElementById(`display${type}`);
+  const dropdown = document.getElementById(`dropdown${type}`);
+  const optionsList = document.getElementById(`options${type}`);
+  const search = document.getElementById(`search${type}`);
+  const image = document.getElementById(`image${type}Currency`);
+  const label = document.getElementById(`${type.toLowerCase()}Label`);
+
+  optionsList.innerHTML = "";
+  Object.keys(currencyToFlagCode).sort().forEach(currency => {
+    const li = document.createElement("li");
+    li.textContent = currency;
+    li.dataset.value = currency;
+    li.addEventListener("click", () => {
+      select.value = currency;
+      display.textContent = currency;
+      dropdown.classList.add("hidden");
+      updateSelectedCurrency(select, image, label);
+      
+      Array.from(optionsList.children).forEach(child => child.classList.remove("active"));
+      li.classList.add("active");
+    });
+    optionsList.appendChild(li);
+  });
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("hidden");
+    if (!dropdown.classList.contains("hidden")) {
+      search.focus();
+      search.value = "";
+      filterCustomList(search, optionsList);
+    }
+  });
+
+  search.addEventListener("input", () => filterCustomList(search, optionsList));
+  
+  document.addEventListener("click", (e) => {
+    if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+}
+
+function filterCustomList(input, list) {
+  const value = input.value.trim().toUpperCase();
+  Array.from(list.children).forEach(li => {
+    li.classList.toggle("hidden", value !== "" && !li.dataset.value.includes(value));
+  });
 }
 
 function loadSelection() {
@@ -103,6 +159,9 @@ function loadSelection() {
 
   sourceSelect.value = currencyToFlagCode[savedSource] ? savedSource : DEFAULT_SOURCE;
   targetSelect.value = currencyToFlagCode[savedTarget] ? savedTarget : DEFAULT_TARGET;
+  
+  document.getElementById("displaySource").textContent = sourceSelect.value;
+  document.getElementById("displayTarget").textContent = targetSelect.value;
 }
 
 function saveSelection() {
@@ -388,6 +447,9 @@ function swapCurrencies() {
 
   sourceSelect.value = targetSelect.value;
   targetSelect.value = source;
+
+  document.getElementById("displaySource").textContent = sourceSelect.value;
+  document.getElementById("displayTarget").textContent = targetSelect.value;
 
   updateFlag(sourceSelect, sourceImage);
   updateFlag(targetSelect, targetImage);

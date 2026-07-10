@@ -213,38 +213,76 @@ body.light .bg-gradient-top, body.light .bg-gradient-bottom {
   object-fit: cover;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-.selector-inputs {
+/* Custom Select Styles */
+.custom-select-wrapper {
+  position: relative;
+  flex: 1;
+}
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+.select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg-gradient-1);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.select-trigger:hover {
+  border-color: var(--primary);
+}
+.select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: var(--bg-gradient-1);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 50;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  gap: 4px;
 }
-.currency-search {
+.select-dropdown.hidden {
+  display: none;
+}
+.dropdown-search {
+  padding: 10px 12px;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--card-border);
   color: var(--text-main);
-  font-size: 0.8rem;
-  padding: 4px 0;
   outline: none;
 }
-.currency-search::placeholder {
+.dropdown-search::placeholder {
   color: var(--text-muted);
 }
-.selector-inputs select {
-  background: transparent;
-  border: none;
-  color: var(--text-main);
-  font-weight: 600;
-  font-size: 1rem;
-  outline: none;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
+.dropdown-options {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
 }
-.selector-inputs select option {
-  background: var(--bg-gradient-1);
+.dropdown-options li {
+  padding: 10px 12px;
   color: var(--text-main);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.dropdown-options li:hover, .dropdown-options li.active {
+  background: var(--primary);
+  color: white;
+}
+.dropdown-options li.hidden {
+  display: none;
 }
 
 /* Amount Inputs & Results */

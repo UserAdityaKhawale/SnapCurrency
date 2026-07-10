@@ -38,10 +38,18 @@
           
           <div class="currency-selector">
             <img id="imageSourceCurrency" src="https://flagcdn.com/48x36/us.png" alt="USD" class="flag-icon"/>
-            <div class="selector-inputs">
-              <input type="text" id="searchSource" class="currency-search" placeholder="Search currency..." />
-              <select id="selectSourceCurrency" aria-label="Source currency">
-                <!-- Options populated by JS -->
+            <div class="custom-select-wrapper">
+              <div class="custom-select" id="customSelectSource">
+                <div class="select-trigger" id="triggerSource">
+                  <span id="displaySource">USD</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+                <div class="select-dropdown hidden" id="dropdownSource">
+                  <input type="text" id="searchSource" class="dropdown-search" placeholder="Search..." autocomplete="off" />
+                  <ul class="dropdown-options" id="optionsSource"></ul>
+                </div>
+              </div>
+              <select id="selectSourceCurrency" class="hidden">
                 <option value="USD">USD</option>
               </select>
             </div>
@@ -70,10 +78,18 @@
           
           <div class="currency-selector">
             <img id="imageTargetCurrency" src="https://flagcdn.com/48x36/in.png" alt="INR" class="flag-icon"/>
-            <div class="selector-inputs">
-              <input type="text" id="searchTarget" class="currency-search" placeholder="Search currency..." />
-              <select id="selectTargetCurrency" aria-label="Target currency">
-                <!-- Options populated by JS -->
+            <div class="custom-select-wrapper">
+              <div class="custom-select" id="customSelectTarget">
+                <div class="select-trigger" id="triggerTarget">
+                  <span id="displayTarget">INR</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+                <div class="select-dropdown hidden" id="dropdownTarget">
+                  <input type="text" id="searchTarget" class="dropdown-search" placeholder="Search..." autocomplete="off" />
+                  <ul class="dropdown-options" id="optionsTarget"></ul>
+                </div>
+              </div>
+              <select id="selectTargetCurrency" class="hidden">
                 <option value="INR">INR</option>
               </select>
             </div>
