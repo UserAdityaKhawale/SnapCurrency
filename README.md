@@ -39,8 +39,16 @@ Live Demo: https://useradityakhawale.github.io/SnapCurrency/
 
 UI Screenshots:
 
-<img width="1889" height="860" alt="Screenshot 2026-07-01 214232" src="https://github.com/user-attachments/assets/f33c0a53-20b2-4b85-a5ef-6945124e5c84" />
-<img width="1889" height="863" alt="Screenshot 2026-07-01 214308" src="https://github.com/user-attachments/assets/9740d32d-1f57-4fec-8b85-4c8abb79f473" />
+<img width="1887" height="852" alt="image" src="https://github.com/user-attachments/assets/fe9384f8-7d1a-4a21-aeb7-6c75ed012e48" />
+
+
+<img width="1896" height="855" alt="image" src="https://github.com/user-attachments/assets/601b246f-beff-4510-ad42-9f8ed72d605b" />
+
+
+
+
+
+
 
 
 License:
