@@ -10,6 +10,9 @@ const targetSearch = document.getElementById("searchTarget");
 const convertButton = document.getElementById("buttonConvert");
 const swapButton = document.getElementById("swapButton");
 const resultText = document.getElementById("resultText");
+const inputTargetCurrency = document.getElementById("inputTargetCurrency");
+const sourceLabel = document.getElementById("sourceLabel");
+const targetLabel = document.getElementById("targetLabel");
 const exchangeRateText = document.getElementById("exchangeRateText");
 const loader = document.getElementById("loader");
 const errorMessage = document.getElementById("errorMessage");
@@ -116,8 +119,11 @@ function updateFlag(selectElement, imageElement) {
   imageElement.alt = selectElement.value;
 }
 
-function updateSelectedCurrency(selectElement, imageElement) {
+function updateSelectedCurrency(selectElement, imageElement, labelElement) {
   updateFlag(selectElement, imageElement);
+  if (labelElement) {
+    labelElement.textContent = selectElement.value;
+  }
   saveSelection();
   updateFavoriteButtons();
   convertCurrency();
@@ -365,6 +371,9 @@ async function convertCurrency() {
   const convertedAmount = amount * rate;
 
   resultText.textContent = `${formatNumber(convertedAmount)} ${target}`;
+  if (inputTargetCurrency) {
+    inputTargetCurrency.value = convertedAmount.toFixed(2);
+  }
   updateExchangeRate(rate);
   addToHistory(amount, source, convertedAmount, target);
 }
@@ -494,8 +503,8 @@ function initializeApp() {
 sourceSearch.addEventListener("input", () => filterCurrencies(sourceSearch, sourceSelect));
 targetSearch.addEventListener("input", () => filterCurrencies(targetSearch, targetSelect));
 
-sourceSelect.addEventListener("change", () => updateSelectedCurrency(sourceSelect, sourceImage));
-targetSelect.addEventListener("change", () => updateSelectedCurrency(targetSelect, targetImage));
+sourceSelect.addEventListener("change", () => updateSelectedCurrency(sourceSelect, sourceImage, sourceLabel));
+targetSelect.addEventListener("change", () => updateSelectedCurrency(targetSelect, targetImage, targetLabel));
 
 themeToggle.addEventListener("click", () => {
   const nextTheme = document.body.classList.contains("light") ? "dark" : "light";
